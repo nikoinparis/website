@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicholas — CS & Quant Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080b0f;
+    --bg2: #0d1117;
+    --bg3: #111820;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --green: #00e5a0;
+    --green-dim: rgba(0,229,160,0.12);
+    --green-dim2: rgba(0,229,160,0.06);
+    --text: #e8edf2;
+    --muted: #6b7b8d;
+    --muted2: #3d4d5c;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: rgba(8,11,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--green);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+  }
+
+  .hero-pre {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--green);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-name {
+    font-family: var(--sans);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .hero-name span { color: var(--green); }
+
+  .hero-tagline {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .chip {
+    font-size: 11px;
+    padding: 4px 12px;
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #080b0f;
+    font-weight: 700;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+  }
+  .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted2);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--muted2), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: var(--sans);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 1rem;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .stat-box {
+    background: var(--bg2);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--sans);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--green);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-group {
+    background: var(--bg2);
+    padding: 1.4rem 1.2rem;
+  }
+
+  .skill-group-title {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    margin-bottom: 0.8rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg3);
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--bg2);
+    padding: 1.8rem 1.6rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .project-card:hover { background: var(--bg3); }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 0;
+    background: var(--green);
+    transition: height 0.3s ease;
+  }
+
+  .project-card:hover::before { height: 100%; }
+
+  .project-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted2);
+    margin-bottom: 0.8rem;
+  }
+
+  .project-name {
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 1rem;
+  }
+
+  .stack-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--green-dim2);
+    border: 1px solid rgba(0,229,160,0.15);
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .project-link {
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--green); }
+  .project-link::before { content: '→ '; }
+
+  /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .exp-item {
+    background: var(--bg2);
+    padding: 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+  }
+
+  .exp-role {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .exp-org {
+    font-size: 12px;
+    color: var(--green);
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.9;
+    grid-column: 1 / -1;
+  }
+
+  .exp-period {
+    font-size: 11px;
+    color: var(--muted2);
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+  }
+
+  .contact-box {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 3.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+
+  .contact-tagline {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    line-height: 1.9;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .contact-link {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--green); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted2);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--green);
+    margin: 0 0 1.5rem;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.2rem; }
+    .about-grid, .projects-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">~/nicholas</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-pre">// CS @ UCSD — Quant Finance & ML</div>
+  <h1 class="hero-name">Nicholas<br><span>Tan.</span></h1>
+  <p class="hero-tagline">
+    Building at the intersection of machine learning and financial markets.
+    I design quantitative trading systems, research alpha signals, and ship full-stack products.
+  </p>
+  <div class="hero-chips">
+    <span class="chip">Python</span>
+    <span class="chip">ML / Deep Learning</span>
+    <span class="chip">Quant Research</span>
+    <span class="chip">Systems Security</span>
+    <span class="chip">TypeScript / React</span>
+    <span class="chip">UCSD '26</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="resume.pdf" class="btn btn-outline" download>Download Resume</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// 01 — about</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>
+        I'm a CS undergrad at <strong>UC San Diego</strong> with a deep interest in where quantitative
+        finance meets machine learning. I think systematically about problems — whether that's
+        designing a backtesting engine or debugging a buffer overflow exploit.
+      </p>
+      <p>
+        On the research side, I build quant trading infrastructure: strategy discovery,
+        walk-forward validation, cross-sectional signal ranking, and ML alpha models.
+        On the engineering side, I do full-stack development with modern stacks.
+      </p>
+      <p>
+        I'm actively looking for <strong>quant research, ML engineering, or SWE internships</strong>
+        where I can contribute to production systems and learn from sharp people.
+      </p>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <span class="stat-num">4</span>
+          <span class="stat-label">QUANT PROJECTS</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">YEARS CODING</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">2</span>
+          <span class="stat-label">STUDENT ORGS</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">'26</span>
+          <span class="stat-label">GRADUATION</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// 02 — skills</div>
+  <h2 class="section-title">Tech Stack</h2>
+  <div class="skills-grid fade-in">
+    <div class="skill-group">
+      <div class="skill-group-title">LANGUAGES</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">C / C++</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">ML / QUANT</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">PyMC</span>
+        <span class="skill-tag">Backtrader</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">WEB</div>
+      <div class="skill-tags">
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Next.js</span>
+        <span class="skill-tag">Vite</span>
+        <span class="skill-tag">Tailwind</span>
+        <span class="skill-tag">Framer Motion</span>
+        <span class="skill-tag">Node.js</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">SYSTEMS & TOOLS</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">GDB</span>
+        <span class="skill-tag">x86 ASM</span>
+        <span class="skill-tag">PostgreSQL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 03 — projects</div>
+  <h2 class="section-title">Selected Work</h2>
+  <div class="projects-grid fade-in">
+
+    <div class="project-card">
+      <div class="project-num">01 /</div>
+      <div class="project-name">Quant Trading Research Pipeline</div>
+      <p class="project-desc">
+        Four-module research system: strategy discovery & backtesting, walk-forward
+        validation with Monte Carlo simulations, cross-sectional signal ranking,
+        and ML alpha model generation with volatility targeting.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">pandas</span>
+        <span class="stack-tag">NumPy</span>
+        <span class="stack-tag">scikit-learn</span>
+        <span class="stack-tag">Backtrader</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/yourusername" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02 /</div>
+      <div class="project-name">ML Recommendation Systems</div>
+      <p class="project-desc">
+        Collaborative filtering and popularity-based recommendation models on
+        Goodreads & Steam datasets. Explored matrix factorization, k-NN, and
+        Bayesian approaches for personalized ranking.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">PyMC</span>
+        <span class="stack-tag">scikit-learn</span>
+        <span class="stack-tag">pandas</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/yourusername" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03 /</div>
+      <div class="project-name">Systems Security Research</div>
+      <p class="project-desc">
+        Implemented buffer overflow exploits including integer overflow, ASLR bypass
+        via NOP sleds, SQL injection across defense levels, and XSS payloads using
+        SVG injection and base64 encoding techniques.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">C</span>
+        <span class="stack-tag">x86 ASM</span>
+        <span class="stack-tag">GDB</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Linux</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/yourusername" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">04 /</div>
+      <div class="project-name">Full-Stack Web Platform</div>
+      <p class="project-desc">
+        Production web applications for student organizations at UCSD.
+        Built with modern stack including TypeScript, React, and Tailwind.
+        Focus on performance, accessibility, and polished UI.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">TypeScript</span>
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Vite</span>
+        <span class="stack-tag">Tailwind</span>
+        <span class="stack-tag">Framer Motion</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/yourusername" class="project-link">GitHub</a>
+        <a href="#" class="project-link">Live</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// 04 — experience</div>
+  <h2 class="section-title">Where I've Worked</h2>
+  <div class="exp-list fade-in">
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Web Developer</div>
+        <div class="exp-org">Triton Droids — UCSD</div>
+      </div>
+      <div class="exp-period">2023 — present</div>
+      <div class="exp-desc">
+        Built and maintained full-stack features for the organization's web presence.
+        Shipped UI components with TypeScript, React, and Framer Motion.
+        Collaborated across design and engineering to hit deadlines.
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Web Developer</div>
+        <div class="exp-org">ACM AI — UCSD</div>
+      </div>
+      <div class="exp-period">2023 — present</div>
+      <div class="exp-desc">
+        Developed and deployed web tooling for one of UCSD's largest technical student organizations.
+        Focused on performance, responsive design, and modern stack best practices
+        (Vite, Tailwind, TypeScript).
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">B.S. Computer Science</div>
+        <div class="exp-org">UC San Diego</div>
+      </div>
+      <div class="exp-period">2022 — 2026</div>
+      <div class="exp-desc">
+        Relevant coursework: Machine Learning, Data Science & Inference (Data 102),
+        Systems Security, Computer Architecture, Concurrent Programming, Linear Algebra.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// 05 — contact</div>
+  <h2 class="section-title">Get In Touch</h2>
+  <div class="contact-box fade-in">
+    <p class="contact-tagline">
+      I'm actively looking for quant research, ML engineering, and SWE internship opportunities.<br>
+      If you're working on something interesting — let's talk.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:your@email.com" class="contact-link">your@email.com</a>
+      <a href="https://github.com/yourusername" class="contact-link" target="_blank">github</a>
+      <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">linkedin</a>
+    </div>
+    <a href="resume.pdf" class="btn btn-primary" download>Download Resume</a>
+  </div>
+</section>
+
+<footer>
+  <span>Built by Nicholas — 2025</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nicholas — Data Science & Quant Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080b0f;
+    --bg2: #0d1117;
+    --bg3: #111820;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.13);
+    --green: #00e5a0;
+    --green-dim: rgba(0,229,160,0.12);
+    --green-dim2: rgba(0,229,160,0.06);
+    --text: #e8edf2;
+    --muted: #6b7b8d;
+    --muted2: #3d4d5c;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2.5rem;
+    background: rgba(8,11,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--green);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 6rem;
+  }
+
+  .hero-pre {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--green);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-name {
+    font-family: var(--sans);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .hero-name span { color: var(--green); }
+
+  .hero-tagline {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .chip {
+    font-size: 11px;
+    padding: 4px 12px;
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.4rem;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: #080b0f;
+    font-weight: 700;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+  }
+  .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted2);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--muted2), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: var(--sans);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 1rem;
+  }
+
+  .about-text p strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .stat-box {
+    background: var(--bg2);
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: var(--sans);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--green);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-group {
+    background: var(--bg2);
+    padding: 1.4rem 1.2rem;
+  }
+
+  .skill-group-title {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    margin-bottom: 0.8rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .skill-tag {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg3);
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--bg2);
+    padding: 1.8rem 1.6rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .project-card:hover { background: var(--bg3); }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 0;
+    background: var(--green);
+    transition: height 0.3s ease;
+  }
+
+  .project-card:hover::before { height: 100%; }
+
+  .project-num {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted2);
+    margin-bottom: 0.8rem;
+  }
+
+  .project-name {
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 1rem;
+  }
+
+  .stack-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: var(--green-dim2);
+    border: 1px solid rgba(0,229,160,0.15);
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .project-link {
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--green); }
+  .project-link::before { content: '→ '; }
+
+  /* EXPERIENCE */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .exp-item {
+    background: var(--bg2);
+    padding: 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+  }
+
+  .exp-role {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .exp-org {
+    font-size: 12px;
+    color: var(--green);
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.9;
+    grid-column: 1 / -1;
+  }
+
+  .exp-period {
+    font-size: 11px;
+    color: var(--muted2);
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+  }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+  }
+
+  .contact-box {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 3.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+  }
+
+  .contact-tagline {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    line-height: 1.9;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .contact-link {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--green); }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted2);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--green);
+    margin: 0 0 1.5rem;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.2rem; }
+    .about-grid, .projects-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">~/nicholas</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-pre">// Data Science @ UC Berkeley — Applied Math Domain Emphasis & Statistics Minor</div>
+  <h1 class="hero-name">Nicholas<br><span>Turangan.</span></h1>
+  <p class="hero-tagline">
+    Building at the intersection of machine learning and financial markets.
+    I design quantitative trading systems, research alpha signals, and translate data into strategic decisions.
+  </p>
+  <div class="hero-chips">
+    <span class="chip">Python</span>
+    <span class="chip">ML / NLP</span>
+    <span class="chip">Quant Research</span>
+    <span class="chip">Time-Series Analysis</span>
+    <span class="chip">SQL / R</span>
+    <span class="chip">UC Berkeley '26</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="resume.pdf" class="btn btn-outline" download>Download Resume</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// 01 — about</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>
+        I'm a Data Science undergrad at <strong>UC Berkeley</strong> (Applied Mathematics domain, GPA 3.64, Dean's List)
+        with a deep interest in where quantitative finance meets machine learning. I think
+        systematically about problems — whether that's designing a backtesting engine or
+        building automated research pipelines.
+      </p>
+      <p>
+        I work as a <strong>Research Data Analyst at Haas School of Business</strong>, building
+        forecasting models and executive dashboards for Dean-level strategy. I also build
+        quant trading infrastructure: momentum signals, volatility targeting, and multi-asset ETF allocation.
+      </p>
+      <p>
+        I'm actively looking for <strong>quant research, data science, or ML engineering roles</strong>
+        where I can contribute to production systems and learn from sharp people.
+      </p>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <span class="stat-num">3.64</span>
+          <span class="stat-label">GPA</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">2+</span>
+          <span class="stat-label">YEARS RESEARCH</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">90%</span>
+          <span class="stat-label">NLP ACCURACY</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">'26</span>
+          <span class="stat-label">GRADUATION</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// 02 — skills</div>
+  <h2 class="section-title">Tech Stack</h2>
+  <div class="skills-grid fade-in">
+    <div class="skill-group">
+      <div class="skill-group-title">LANGUAGES</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">R</span>
+        <span class="skill-tag">SQL (MySQL)</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Jupyter</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">ML / QUANT</div>
+      <div class="skill-tags">
+        <span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">SciPy</span>
+        <span class="skill-tag">BERT / RoBERTa</span>
+        <span class="skill-tag">Streamlit</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">QUANT METHODS</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Time-Series</span>
+        <span class="skill-tag">Monte Carlo</span>
+        <span class="skill-tag">Stochastics</span>
+        <span class="skill-tag">Optimization</span>
+        <span class="skill-tag">Backtesting</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">DATA ANALYSIS</div>
+      <div class="skill-tags">
+        <span class="skill-tag">EDA</span>
+        <span class="skill-tag">Feature Engineering</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Causal Inference</span>
+        <span class="skill-tag">Data Cleaning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 03 — projects</div>
+  <h2 class="section-title">Selected Work</h2>
+  <div class="projects-grid fade-in">
+
+    <div class="project-card">
+      <div class="project-num">01 /</div>
+      <div class="project-name">Tactical ETF Portfolio Optimization System</div>
+      <p class="project-desc">
+        Vectorized backtesting and research pipeline for tactical multi-asset ETF allocation.
+        Champion strategy: 252-day momentum + long-only trend filter + minimum-variance weighting
+        + volatility targeting + defensive bond/gold sleeve. Achieved Sharpe ratio of 1.18
+        with max drawdown of -20.6%. Deployed via a Streamlit dashboard.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">NumPy</span>
+        <span class="stack-tag">pandas</span>
+        <span class="stack-tag">SciPy</span>
+        <span class="stack-tag">scikit-learn</span>
+        <span class="stack-tag">Streamlit</span>
+        <span class="stack-tag">yfinance</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/nicholas-turangan" class="project-link">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02 /</div>
+      <div class="project-name">Haas Ranking Analytics Pipeline</div>
+      <p class="project-desc">
+        Longitudinal time-series analysis of U.S. News, Financial Times, and Poets & Quants
+        ranking data to quantify performance trends. Built automated Python pipeline with
+        Google Scholar and Scopus API integrations, cutting data-processing time by 90%.
+        Produced executive forecasts and dashboards for the Dean's office.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">pandas</span>
+        <span class="stack-tag">Google Scholar API</span>
+        <span class="stack-tag">Scopus API</span>
+        <span class="stack-tag">Time-Series</span>
+      </div>
+      <div class="project-links">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03 /</div>
+      <div class="project-name">NLP Sentiment Analysis — TikTok Ban</div>
+      <p class="project-desc">
+        Fine-tuned BERT and RoBERTa models to analyze public sentiment around TikTok's
+        potential US ban in 2023, achieving 90% accuracy. Developed automated data pipelines
+        and conducted statistical performance analysis using accuracy, F1-score, and
+        confidence calibration metrics.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">BERT</span>
+        <span class="stack-tag">RoBERTa</span>
+        <span class="stack-tag">NLP</span>
+        <span class="stack-tag">scikit-learn</span>
+      </div>
+      <div class="project-links">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">04 /</div>
+      <div class="project-name">Student Government Budget Modeling</div>
+      <p class="project-desc">
+        Applied data-driven financial modeling in SQL and Python to analyze $1.2M+ in
+        annual budget allocations at De Anza Student Government. Identified $100K in
+        optimization opportunities, reallocating resources to high-impact student programs.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">SQL</span>
+        <span class="stack-tag">Financial Modeling</span>
+        <span class="stack-tag">Statistical Analysis</span>
+      </div>
+      <div class="project-links">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// 04 — experience</div>
+  <h2 class="section-title">Where I've Worked</h2>
+  <div class="exp-list fade-in">
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Research Data Analyst</div>
+        <div class="exp-org">UC Berkeley, Haas School of Business</div>
+      </div>
+      <div class="exp-period">Sep 2024 — present</div>
+      <div class="exp-desc">
+        Conducted longitudinal time-series analysis of ranking data (U.S. News, Financial Times, Poets & Quants)
+        to identify statistical factors driving year-over-year changes. Developed an automated Python pipeline
+        for data ingestion and cleaning via Google Scholar and Scopus APIs, cutting processing time by 90%.
+        Produced executive-level forecasts and dashboards for the Dean's office and board meetings.
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Volunteer Undergraduate Researcher</div>
+        <div class="exp-org">SJSU Intelligent Conversational Agents & Neural Networks Lab</div>
+      </div>
+      <div class="exp-period">Jun 2023 — Aug 2023</div>
+      <div class="exp-desc">
+        Implemented and fine-tuned NLP models (BERT, RoBERTa) for sentiment analysis around TikTok's
+        potential US ban, achieving 90% accuracy. Developed automated data pipelines and conducted
+        statistical performance analysis using accuracy, F1-score, and confidence calibration metrics.
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Vice Chair of Finance</div>
+        <div class="exp-org">De Anza Student Government</div>
+      </div>
+      <div class="exp-period">Sep 2023 — Jun 2024</div>
+      <div class="exp-desc">
+        Applied data-driven financial modeling in SQL and Python to analyze $1.2M+ in annual budget
+        allocations. Identified $100K in optimization opportunities through statistical analysis,
+        reallocating resources to high-impact student-centric activities.
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">B.A. Data Science — Applied Mathematics</div>
+        <div class="exp-org">UC Berkeley</div>
+      </div>
+      <div class="exp-period">2024 — 2026</div>
+      <div class="exp-desc">
+        Minor in Statistics. GPA 3.64, Dean's List. Relevant coursework: Probability, Time Series,
+        Stochastics, Numerical Analysis, Optimization, Data Inference & Decision-Making, NLP.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// 05 — contact</div>
+  <h2 class="section-title">Get In Touch</h2>
+  <div class="contact-box fade-in">
+    <p class="contact-tagline">
+      I'm actively looking for quant research, data science, and ML engineering opportunities.<br>
+      If you're working on something interesting — let's talk.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:nikot@berkeley.edu" class="contact-link">nikot@berkeley.edu</a>
+      <a href="https://linkedin.com/in/nicholas-turangan-a0116b24b/" class="contact-link" target="_blank">linkedin</a>
+    </div>
+    <a href="resume.pdf" class="btn btn-primary" download>Download Resume</a>
+  </div>
+</section>
+
+<footer>
+  <span>Built by Nicholas Turangan — 2025</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const observer = new IntersectionObserver((entries) =
