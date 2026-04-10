@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nicholas — Data Science & Quant Finance</title>
+<title>Nicholas — CS & Quant Finance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -526,6 +526,7 @@
   <div class="nav-logo">~/nicholas</div>
   <ul class="nav-links">
     <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
     <li><a href="#projects">projects</a></li>
     <li><a href="#experience">experience</a></li>
     <li><a href="#contact">contact</a></li>
@@ -534,7 +535,7 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-pre">// Data Science @ UC Berkeley — Applied Math Domain Emphasis & Statistics Minor</div>
+  <div class="hero-pre">// Data Science @ UC Berkeley — Quant Finance & ML</div>
   <h1 class="hero-name">Nicholas<br><span>Turangan.</span></h1>
   <p class="hero-tagline">
     Building at the intersection of machine learning and financial markets.
@@ -674,9 +675,7 @@
         <span class="stack-tag">Streamlit</span>
         <span class="stack-tag">yfinance</span>
       </div>
-      <div class="project-links">
-        <a href="https://github.com/nicholas-turangan" class="project-link">GitHub</a>
-      </div>
+      <div class="project-links"></div>
     </div>
 
     <div class="project-card">
@@ -684,9 +683,9 @@
       <div class="project-name">Haas Ranking Analytics Pipeline</div>
       <p class="project-desc">
         Longitudinal time-series analysis of U.S. News, Financial Times, and Poets & Quants
-        ranking data to quantify performance trends. Built automated Python pipeline with
-        Google Scholar and Scopus API integrations, cutting data-processing time by 90%.
-        Produced executive forecasts and dashboards for the Dean's office.
+        ranking data to quantify performance trends. Automated Python pipeline with Google Scholar
+        and Scopus API integrations cut data-processing time by 90%. Produced executive forecasts
+        and dashboards for the Dean's office and board meetings.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
@@ -695,8 +694,7 @@
         <span class="stack-tag">Scopus API</span>
         <span class="stack-tag">Time-Series</span>
       </div>
-      <div class="project-links">
-      </div>
+      <div class="project-links"></div>
     </div>
 
     <div class="project-card">
@@ -705,8 +703,7 @@
       <p class="project-desc">
         Fine-tuned BERT and RoBERTa models to analyze public sentiment around TikTok's
         potential US ban in 2023, achieving 90% accuracy. Developed automated data pipelines
-        and conducted statistical performance analysis using accuracy, F1-score, and
-        confidence calibration metrics.
+        and evaluated model performance using accuracy, F1-score, and confidence calibration metrics.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
@@ -715,8 +712,7 @@
         <span class="stack-tag">NLP</span>
         <span class="stack-tag">scikit-learn</span>
       </div>
-      <div class="project-links">
-      </div>
+      <div class="project-links"></div>
     </div>
 
     <div class="project-card">
@@ -733,8 +729,7 @@
         <span class="stack-tag">Financial Modeling</span>
         <span class="stack-tag">Statistical Analysis</span>
       </div>
-      <div class="project-links">
-      </div>
+      <div class="project-links"></div>
     </div>
 
   </div>
@@ -753,9 +748,9 @@
       </div>
       <div class="exp-period">Sep 2024 — present</div>
       <div class="exp-desc">
-        Conducted longitudinal time-series analysis of ranking data (U.S. News, Financial Times, Poets & Quants)
-        to identify statistical factors driving year-over-year changes. Developed an automated Python pipeline
-        for data ingestion and cleaning via Google Scholar and Scopus APIs, cutting processing time by 90%.
+        Conducted longitudinal time-series analysis of U.S. News, Financial Times, and Poets & Quants
+        ranking data to identify statistical factors driving year-over-year changes. Built automated
+        Python pipeline with Google Scholar and Scopus API integrations, cutting processing time by 90%.
         Produced executive-level forecasts and dashboards for the Dean's office and board meetings.
       </div>
     </div>
@@ -789,7 +784,7 @@
     <div class="exp-item">
       <div>
         <div class="exp-role">B.A. Data Science — Applied Mathematics</div>
-        <div class="exp-org">UC Berkeley</div>
+        <div class="exp-org">UC Berkeley, College of Computing, Data Science and Society</div>
       </div>
       <div class="exp-period">2024 — 2026</div>
       <div class="exp-desc">
@@ -819,8 +814,18 @@
 </section>
 
 <footer>
-  <span>Built by Nicholas Turangan — 2025</span>
+  <span>Built by Nicholas Turangan — 2026</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const observer = new IntersectionObserver((entries) =
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
