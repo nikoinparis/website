@@ -537,17 +537,14 @@
 <section id="hero">
   <div class="hero-pre">// Data Science @ UC Berkeley — Quant Finance & ML</div>
   <h1 class="hero-name">Nicholas<br><span>Turangan.</span></h1>
-  <p class="hero-tagline">
-    Building at the intersection of machine learning and financial markets.
-    I design quantitative trading systems, research alpha signals, and translate data into strategic decisions.
-  </p>
+
   <div class="hero-chips">
+    <span class="chip">UC Berkeley '26</span>
     <span class="chip">Python</span>
     <span class="chip">ML / NLP</span>
     <span class="chip">Quant Research</span>
     <span class="chip">Time-Series Analysis</span>
     <span class="chip">SQL / R</span>
-    <span class="chip">UC Berkeley '26</span>
   </div>
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -627,6 +624,7 @@
         <span class="skill-tag">Streamlit</span>
         <span class="skill-tag">Google Scholar API</span>
         <span class="skill-tag">Scopus API</span>
+        <span class="skill-tag">yfinance</span>
       </div>
     </div>
   
@@ -693,10 +691,10 @@
       <div class="project-num">01 /</div>
       <div class="project-name">Tactical ETF Portfolio Optimization System</div>
       <p class="project-desc">
-        Vectorized backtesting and research pipeline for tactical multi-asset ETF allocation.
-        Champion strategy: 252-day momentum + long-only trend filter + minimum-variance weighting
-        + volatility targeting + defensive bond/gold sleeve. Achieved Sharpe ratio of 1.18
-        with max drawdown of -20.6%. Deployed via a Streamlit dashboard.
+        Built a vectorized backtesting and research pipeline for tactical multi-asset ETF allocation,
+        combining momentum signals, trend filters, portfolio weighting, risk overlays, and benchmark evaluation.
+        The final strategy achieved a <strong>1.18 Sharpe ratio</strong> with <strong>-20.6% max drawdown</strong>
+        and was deployed through a Streamlit dashboard for strategy diagnostics and selection.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
@@ -707,63 +705,70 @@
         <span class="stack-tag">Streamlit</span>
         <span class="stack-tag">yfinance</span>
       </div>
-      <div class="project-links"></div>
+      <div class="project-links">
+        <a href="https://github.com/nikoinparis/quant-portfolio-project" class="project-link" target="_blank">GitHub</a>
+      </div>
     </div>
-
+  
     <div class="project-card">
       <div class="project-num">02 /</div>
-      <div class="project-name">Haas Ranking Analytics Pipeline</div>
+      <div class="project-name">SPY Momentum Research</div>
       <p class="project-desc">
-        Longitudinal time-series analysis of U.S. News, Financial Times, and Poets & Quants
-        ranking data to quantify performance trends. Automated Python pipeline with Google Scholar
-        and Scopus API integrations cut data-processing time by 90%. Produced executive forecasts
-        and dashboards for the Dean's office and board meetings.
+        Built and refined a SPY momentum research system to study how momentum, volatility targeting,
+        and validation choices affect performance. Used this project to test signal behavior, compare
+        strategy variants, and better understand robustness across different market conditions.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
-        <span class="stack-tag">pandas</span>
-        <span class="stack-tag">Google Scholar API</span>
-        <span class="stack-tag">Scopus API</span>
-        <span class="stack-tag">Time-Series</span>
+        <span class="stack-tag">Momentum</span>
+        <span class="stack-tag">Backtesting</span>
+        <span class="stack-tag">Validation</span>
+        <span class="stack-tag">Risk Management</span>
       </div>
-      <div class="project-links"></div>
+      <div class="project-links">
+        <a href="https://github.com/nikoinparis/spy-momentum-research" class="project-link" target="_blank">GitHub</a>
+      </div>
     </div>
-
+  
     <div class="project-card">
       <div class="project-num">03 /</div>
-      <div class="project-name">NLP Sentiment Analysis — TikTok Ban</div>
+      <div class="project-name">Quant Momentum Strategy Research</div>
       <p class="project-desc">
-        Fine-tuned BERT and RoBERTa models to analyze public sentiment around TikTok's
-        potential US ban in 2023, achieving 90% accuracy. Developed automated data pipelines
-        and evaluated model performance using accuracy, F1-score, and confidence calibration metrics.
+        Developed an earlier quant research framework for studying momentum and volatility-based trading behavior.
+        This project helped build the foundation for later portfolio work by exploring how signals behave,
+        how market regimes matter, and how systematic testing can improve research decisions.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
-        <span class="stack-tag">BERT</span>
-        <span class="stack-tag">RoBERTa</span>
-        <span class="stack-tag">NLP</span>
-        <span class="stack-tag">scikit-learn</span>
+        <span class="stack-tag">Quant Research</span>
+        <span class="stack-tag">Momentum</span>
+        <span class="stack-tag">Volatility</span>
+        <span class="stack-tag">Backtesting</span>
       </div>
-      <div class="project-links"></div>
+      <div class="project-links">
+        <a href="https://github.com/nikoinparis/quant-momentum-strategy-research" class="project-link" target="_blank">GitHub</a>
+      </div>
     </div>
-
+  
     <div class="project-card">
       <div class="project-num">04 /</div>
-      <div class="project-name">Student Government Budget Modeling</div>
+      <div class="project-name">OpenAlex Pipeline</div>
       <p class="project-desc">
-        Applied data-driven financial modeling in SQL and Python to analyze $1.2M+ in
-        annual budget allocations at De Anza Student Government. Identified $100K in
-        optimization opportunities, reallocating resources to high-impact student programs.
+        Built a lightweight Python pipeline that links UC Berkeley faculty to OpenAlex author profiles,
+        retrieves publication records, and summarizes journal activity. Designed to support structured
+        research reporting and publication analysis workflows.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
-        <span class="stack-tag">SQL</span>
-        <span class="stack-tag">Financial Modeling</span>
-        <span class="stack-tag">Statistical Analysis</span>
+        <span class="stack-tag">Data Pipeline</span>
+        <span class="stack-tag">Research Analytics</span>
+        <span class="stack-tag">API Integration</span>
       </div>
-      <div class="project-links"></div>
+      <div class="project-links">
+        <a href="https://github.com/nikoinparis/Open-Alex-Pipeline" class="project-link" target="_blank">GitHub</a>
+      </div>
     </div>
-
+  
   </div>
 </section>
 
