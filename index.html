@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nicholas — CS & Quant Finance</title>
+<title>Nicholas — Data Science & Finance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -31,7 +31,7 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--mono);
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.7;
     overflow-x: hidden;
   }
@@ -80,7 +80,7 @@
   .nav-links a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.05em;
     transition: color 0.2s;
   }
@@ -105,7 +105,7 @@
   }
 
   .hero-pre {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.2em;
     color: var(--green);
     margin-bottom: 1.2rem;
@@ -123,7 +123,7 @@
   .hero-name span { color: var(--green); }
 
   .hero-tagline {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--muted);
     max-width: 480px;
     line-height: 1.9;
@@ -138,7 +138,7 @@
   }
 
   .chip {
-    font-size: 11px;
+    font-size: 12px;
     padding: 4px 12px;
     border: 1px solid var(--border2);
     border-radius: 2px;
@@ -156,7 +156,7 @@
     display: inline-block;
     padding: 0.65rem 1.4rem;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-decoration: none;
     border-radius: 2px;
@@ -189,7 +189,7 @@
     align-items: center;
     gap: 6px;
     color: var(--muted2);
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     animation: bounce 2s infinite;
   }
@@ -207,7 +207,7 @@
 
   /* SECTION HEADERS */
   .section-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.25em;
     color: var(--green);
     margin-bottom: 0.5rem;
@@ -221,6 +221,13 @@
     margin-bottom: 2.5rem;
   }
 
+  .section-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: -1.7rem;
+    margin-bottom: 2.5rem;
+  }
+
   /* ABOUT */
   .about-grid {
     display: grid;
@@ -231,7 +238,7 @@
 
   .about-text p {
     color: var(--muted);
-    font-size: 13px;
+    font-size: 14px;
     line-height: 2;
     margin-bottom: 1rem;
   }
@@ -264,7 +271,7 @@
   }
 
   .stat-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--muted);
     margin-top: 2px;
@@ -285,7 +292,7 @@
   }
 
   .skill-group-title {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.15em;
     color: var(--green);
     margin-bottom: 0.8rem;
@@ -298,11 +305,51 @@
   }
 
   .skill-tag {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted);
     background: var(--bg3);
     padding: 3px 8px;
     border: 1px solid var(--border);
+  }
+
+  /* COURSEWORK */
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .course-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.8rem;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .course-name {
+    color: var(--muted);
+  }
+
+  .course-code {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .course-grade {
+    color: var(--green);
+    font-weight: 700;
+    white-space: nowrap;
+    font-size: 12px;
   }
 
   /* PROJECTS */
@@ -337,7 +384,7 @@
   .project-card:hover::before { height: 100%; }
 
   .project-num {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--muted2);
     margin-bottom: 0.8rem;
@@ -353,7 +400,7 @@
   }
 
   .project-desc {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
     line-height: 1.8;
     margin-bottom: 1.2rem;
@@ -367,7 +414,7 @@
   }
 
   .stack-tag {
-    font-size: 10px;
+    font-size: 11px;
     padding: 2px 8px;
     background: var(--green-dim2);
     border: 1px solid rgba(0,229,160,0.15);
@@ -381,7 +428,7 @@
   }
 
   .project-link {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted);
     text-decoration: none;
     letter-spacing: 0.05em;
@@ -416,20 +463,20 @@
   }
 
   .exp-org {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--green);
     margin-bottom: 0.6rem;
   }
 
   .exp-desc {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
     line-height: 1.9;
     grid-column: 1 / -1;
   }
 
   .exp-period {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted2);
     white-space: nowrap;
     letter-spacing: 0.05em;
@@ -457,7 +504,7 @@
   }
 
   .contact-tagline {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
     margin-bottom: 2rem;
     line-height: 1.9;
@@ -472,7 +519,7 @@
   }
 
   .contact-link {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
     text-decoration: none;
     letter-spacing: 0.05em;
@@ -487,7 +534,7 @@
     text-align: center;
     padding: 1.5rem;
     border-top: 1px solid var(--border);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted2);
     letter-spacing: 0.05em;
   }
@@ -527,6 +574,7 @@
   <ul class="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#skills">skills</a></li>
+    <li><a href="#coursework">coursework</a></li>
     <li><a href="#projects">projects</a></li>
     <li><a href="#experience">experience</a></li>
     <li><a href="#contact">contact</a></li>
@@ -535,14 +583,14 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-pre">// Data Science @ UC Berkeley — Quant Finance & ML</div>
+  <div class="hero-pre">// Data Science @ UC Berkeley — Quant, Finance & ML</div>
   <h1 class="hero-name">Nicholas<br><span>Turangan.</span></h1>
 
   <div class="hero-chips">
     <span class="chip">UC Berkeley '26</span>
     <span class="chip">Python</span>
     <span class="chip">ML / NLP</span>
-    <span class="chip">Quant Research</span>
+    <span class="chip">Quant & Finance</span>
     <span class="chip">Time-Series Analysis</span>
     <span class="chip">SQL / R</span>
   </div>
@@ -561,28 +609,31 @@
   <div class="about-grid fade-in">
     <div class="about-text">
       <p>
-        I'm a <strong>Data Science major at UC Berkeley</strong> in the Applied Mathematics domain with a
-        <strong>Statistics minor</strong>. My coursework and projects have focused on probability,
-        time series, stochastics, numerical analysis, optimization, and data-driven problem solving.
+        I'm a <strong>Data Science major at UC Berkeley</strong> in the Applied Mathematics & Modeling
+        concentration, with a <strong>Statistics minor</strong>. My coursework spans probability, time
+        series, stochastic processes, statistical inference, numerical analysis, and optimization.
       </p>
       <p>
-        I currently work as a <strong>Research Data Analyst at Berkeley Haas</strong>, where I conduct
-        longitudinal time-series analysis, build automated Python data pipelines, and create executive-facing
-        forecasts and dashboards from ranking and research data.
+        I spent two years as a <strong>Research Data Analyst at Berkeley Haas</strong>, where I ran
+        longitudinal time-series analysis on U.S. News, Financial Times, and Poets &amp; Quants ranking
+        data, built automated Python pipelines against the Google Scholar and Scopus APIs, and produced
+        executive-facing forecasts and dashboards for the Dean's office and board meetings.
       </p>
       <p>
-        I also built a <strong>Tactical ETF Portfolio Research &amp; Optimization System</strong> focused on
-        momentum signals, trend filters, portfolio weighting, risk overlays, and benchmark evaluation.
+        I also worked as a <strong>Business Analytics &amp; Revenue Optimization Intern at Kebun Wisata
+        Pasirmukti</strong> in Indonesia, building demand-forecasting and pricing models from booking
+        data to guide staffing, pricing, and promotional decisions.
       </p>
       <p>
-        In that project, I evaluated shared-window and ETF-specific momentum, 200-day moving average filters,
-        inverse-volatility versus minimum-variance weighting, volatility targeting, and defensive sleeves.
-        The final strategy achieved a <strong>1.18 Sharpe ratio</strong> with <strong>-20.6% max drawdown</strong>
-        and was deployed in a <strong>Streamlit dashboard</strong> for strategy selection and diagnostics.
+        Outside of work, I built <strong>Atlas Allocation</strong>, a regime-aware ETF portfolio research
+        platform combining alpha signals, market-state logic, and benchmark-aware backtesting. The
+        production strategy improved Sharpe from <strong>0.884 to 0.948</strong> and cut max drawdown
+        from <strong>-13.98% to -11.60%</strong>, with a <strong>2.179 holdout Sharpe</strong>.
       </p>
       <p>
-        I'm interested in <strong>quant research, data science, and machine learning roles</strong> where I can
-        contribute strong analytical thinking, statistical modeling, and research-oriented programming.
+        I'm interested in <strong>quant, finance, and data-driven roles more broadly</strong> — anywhere
+        I can bring rigorous statistical thinking and research-oriented programming to real decisions,
+        whether that's investment research, corporate finance, or applied data science.
       </p>
     </div>
     <div>
@@ -619,15 +670,17 @@
         <span class="skill-tag">Python</span>
         <span class="skill-tag">R</span>
         <span class="skill-tag">SQL (MySQL)</span>
+        <span class="skill-tag">TypeScript</span>
         <span class="skill-tag">Git</span>
         <span class="skill-tag">Jupyter</span>
         <span class="skill-tag">Streamlit</span>
+        <span class="skill-tag">Vercel</span>
         <span class="skill-tag">Google Scholar API</span>
         <span class="skill-tag">Scopus API</span>
         <span class="skill-tag">yfinance</span>
       </div>
     </div>
-  
+
     <div class="skill-group">
       <div class="skill-group-title">DATA SCIENCE & ML</div>
       <div class="skill-tags">
@@ -635,18 +688,19 @@
         <span class="skill-tag">NumPy</span>
         <span class="skill-tag">SciPy</span>
         <span class="skill-tag">scikit-learn</span>
+        <span class="skill-tag">matplotlib</span>
         <span class="skill-tag">BERT</span>
         <span class="skill-tag">RoBERTa</span>
         <span class="skill-tag">NLP</span>
-        <span class="skill-tag">Model Selection</span>
+        <span class="skill-tag">Model Validation</span>
         <span class="skill-tag">Regularization</span>
         <span class="skill-tag">Calibration</span>
         <span class="skill-tag">Feature Engineering</span>
       </div>
     </div>
-  
+
     <div class="skill-group">
-      <div class="skill-group-title">STATISTICS & MODELING</div>
+      <div class="skill-group-title">STATISTICS & QUANT METHODS</div>
       <div class="skill-tags">
         <span class="skill-tag">Probability</span>
         <span class="skill-tag">Statistical Inference</span>
@@ -660,16 +714,15 @@
         <span class="skill-tag">Causal Inference</span>
       </div>
     </div>
-  
+
     <div class="skill-group">
-      <div class="skill-group-title">QUANT RESEARCH & ANALYTICS</div>
+      <div class="skill-group-title">INVESTMENT & FINANCE ANALYTICS</div>
       <div class="skill-tags">
         <span class="skill-tag">Backtesting</span>
         <span class="skill-tag">Portfolio Construction</span>
-        <span class="skill-tag">Momentum Signals</span>
-        <span class="skill-tag">Trend Filters</span>
-        <span class="skill-tag">Volatility Targeting</span>
-        <span class="skill-tag">Minimum-Variance Weighting</span>
+        <span class="skill-tag">Alpha Signal Research</span>
+        <span class="skill-tag">Risk / Return Analysis</span>
+        <span class="skill-tag">Drawdown Analysis</span>
         <span class="skill-tag">Benchmark Evaluation</span>
         <span class="skill-tag">Forecasting</span>
         <span class="skill-tag">Dashboarding</span>
@@ -681,20 +734,72 @@
   </div>
 </section>
 
+<!-- COURSEWORK -->
+<section id="coursework">
+  <div class="section-label">// 03 — coursework</div>
+  <h2 class="section-title">Berkeley Coursework</h2>
+  <p class="section-note">Dean's List, College of Computing, Data Science &amp; Society — Fall 2025</p>
+  <div class="courses-grid fade-in">
+
+    <div class="skill-group">
+      <div class="skill-group-title">DATA SCIENCE & STATISTICS</div>
+      <div class="course-list">
+        <div class="course-row"><span class="course-name"><span class="course-code">DATA C100</span> — Principles &amp; Techniques of Data Science</span><span class="course-grade">A-</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">DATA C102</span> — Data, Inference, and Decisions</span><span class="course-grade">A</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">DATA C140</span> — Probability for Data Science</span><span class="course-grade">A</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">STAT 135</span> — Concepts of Statistics</span><span class="course-grade">A+</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">STAT 150</span> — Stochastic Processes</span><span class="course-grade">A</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">STAT 153</span> — Intro to Time Series</span><span class="course-grade">A+</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">STAT 151A</span> — Linear Modelling</span><span class="course-grade">B-</span></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">MATH & OPTIMIZATION</div>
+      <div class="course-list">
+        <div class="course-row"><span class="course-name"><span class="course-code">MATH 126</span> — Intro to Partial Diff. Equations</span><span class="course-grade">A+</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">MATH 128A</span> — Numerical Analysis</span><span class="course-grade">A</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">EECS 127</span> — Optimization Models</span><span class="course-grade">A</span></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">COMPUTER SCIENCE</div>
+      <div class="course-list">
+        <div class="course-row"><span class="course-name"><span class="course-code">COMPSCI 61A</span> — Struct. &amp; Interp. of Computer Programs</span><span class="course-grade">B-</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">COMPSCI 61B</span> — Data Structures</span><span class="course-grade">A-</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">INFO 159</span> — Natural Language Processing</span><span class="course-grade">B+</span></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-title">FINANCE, ECON & ETHICS</div>
+      <div class="course-list">
+        <div class="course-row"><span class="course-name"><span class="course-code">ECON 101B</span> — Macroeconomics (Quantitative)</span><span class="course-grade">A</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">INDENG 153</span> — Logistics Network Design &amp; SCM</span><span class="course-grade">A-</span></div>
+        <div class="course-row"><span class="course-name"><span class="course-code">DATA C104</span> — Ethics of Data</span><span class="course-grade">B+</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">// 03 — projects</div>
+  <div class="section-label">// 04 — projects</div>
   <h2 class="section-title">Selected Work</h2>
   <div class="projects-grid fade-in">
 
     <div class="project-card">
       <div class="project-num">01 /</div>
-      <div class="project-name">Tactical ETF Portfolio Optimization System</div>
+      <div class="project-name">Atlas Allocation — ETF Portfolio Research & Optimization System</div>
       <p class="project-desc">
-        Built a vectorized backtesting and research pipeline for tactical multi-asset ETF allocation,
-        combining momentum signals, trend filters, portfolio weighting, risk overlays, and benchmark evaluation.
-        The final strategy achieved a <strong>1.18 Sharpe ratio</strong> with <strong>-20.6% max drawdown</strong>
-        and was deployed through a Streamlit dashboard for strategy diagnostics and selection.
+        Built a systematic, regime-aware ETF allocation research platform combining alpha signals,
+        market-state logic, checkpointed allocators, and benchmark-aware backtesting. Researched 7
+        frontier phases spanning state quality, trend strength, re-risking, leadership/crowding, allocator
+        objectives, ML diagnostics, and cross-asset lead-lag behavior. Promoted a Phase 5 fragility-guard
+        strategy to production, improving Sharpe <strong>0.884 → 0.948</strong> and max drawdown
+        <strong>-13.98% → -11.60%</strong>, with a <strong>2.179 holdout Sharpe</strong>.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
@@ -702,14 +807,17 @@
         <span class="stack-tag">pandas</span>
         <span class="stack-tag">SciPy</span>
         <span class="stack-tag">scikit-learn</span>
+        <span class="stack-tag">matplotlib</span>
         <span class="stack-tag">Streamlit</span>
         <span class="stack-tag">yfinance</span>
+        <span class="stack-tag">TypeScript</span>
+        <span class="stack-tag">Vercel</span>
       </div>
       <div class="project-links">
         <a href="https://github.com/nikoinparis/quant-portfolio-project" class="project-link" target="_blank">GitHub</a>
       </div>
     </div>
-  
+
     <div class="project-card">
       <div class="project-num">02 /</div>
       <div class="project-name">SPY Momentum Research</div>
@@ -729,18 +837,19 @@
         <a href="https://github.com/nikoinparis/spy-momentum-research" class="project-link" target="_blank">GitHub</a>
       </div>
     </div>
-  
+
     <div class="project-card">
       <div class="project-num">03 /</div>
       <div class="project-name">Quant Momentum Strategy Research</div>
       <p class="project-desc">
-        Developed an earlier quant research framework for studying momentum and volatility-based trading behavior.
-        This project helped build the foundation for later portfolio work by exploring how signals behave,
-        how market regimes matter, and how systematic testing can improve research decisions.
+        Developed an earlier quantitative research framework for studying momentum and volatility-based
+        trading behavior. This project helped build the foundation for later portfolio work by exploring
+        how signals behave, how market regimes matter, and how systematic testing can improve research
+        decisions.
       </p>
       <div class="project-stack">
         <span class="stack-tag">Python</span>
-        <span class="stack-tag">Quant Research</span>
+        <span class="stack-tag">Quant & Finance</span>
         <span class="stack-tag">Momentum</span>
         <span class="stack-tag">Volatility</span>
         <span class="stack-tag">Backtesting</span>
@@ -749,7 +858,7 @@
         <a href="https://github.com/nikoinparis/quant-momentum-strategy-research" class="project-link" target="_blank">GitHub</a>
       </div>
     </div>
-  
+
     <div class="project-card">
       <div class="project-num">04 /</div>
       <div class="project-name">OpenAlex Pipeline</div>
@@ -768,13 +877,13 @@
         <a href="https://github.com/nikoinparis/Open-Alex-Pipeline" class="project-link" target="_blank">GitHub</a>
       </div>
     </div>
-  
+
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">// 04 — experience</div>
+  <div class="section-label">// 05 — experience</div>
   <h2 class="section-title">Where I've Worked</h2>
   <div class="exp-list fade-in">
 
@@ -783,12 +892,27 @@
         <div class="exp-role">Research Data Analyst</div>
         <div class="exp-org">UC Berkeley, Haas School of Business</div>
       </div>
-      <div class="exp-period">Sep 2024 — present</div>
+      <div class="exp-period">Sep 2024 — Aug 2026</div>
       <div class="exp-desc">
         Conducted longitudinal time-series analysis of U.S. News, Financial Times, and Poets & Quants
-        ranking data to identify statistical factors driving year-over-year changes. Built automated
+        ranking data to identify statistical factors driving year-over-year changes. Built an automated
         Python pipeline with Google Scholar and Scopus API integrations, cutting processing time by 90%.
         Produced executive-level forecasts and dashboards for the Dean's office and board meetings.
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-role">Business Analytics / Revenue Optimization Intern</div>
+        <div class="exp-org">Kebun Wisata Pasirmukti, Bogor, Indonesia</div>
+      </div>
+      <div class="exp-period">May 2025 — Sep 2025</div>
+      <div class="exp-desc">
+        Built a Python-based revenue and demand analytics workflow using 12+ months of booking data to
+        forecast visitor volume across school trips, family visits, corporate outings, weekends, and
+        holiday periods. Consolidated 1,000+ booking, attendance, package, and revenue records into a
+        structured dataset, and developed pricing, staffing, and promotional scenario analyses that
+        translated demand forecasts into management-facing recommendations.
       </div>
     </div>
 
@@ -804,29 +928,16 @@
         statistical performance analysis using accuracy, F1-score, and confidence calibration metrics.
       </div>
     </div>
-
-    <div class="exp-item">
-      <div>
-        <div class="exp-role">Vice Chair of Finance</div>
-        <div class="exp-org">De Anza Student Government</div>
-      </div>
-      <div class="exp-period">Sep 2023 — Jun 2024</div>
-      <div class="exp-desc">
-        Applied data-driven financial modeling in SQL and Python to analyze $1.2M+ in annual budget
-        allocations. Identified $100K in optimization opportunities through statistical analysis,
-        reallocating resources to high-impact student-centric activities.
-      </div>
-    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">// 05 — contact</div>
+  <div class="section-label">// 06 — contact</div>
   <h2 class="section-title">Get In Touch</h2>
   <div class="contact-box fade-in">
     <p class="contact-tagline">
-      I'm actively looking for quant research, data science, and ML engineering opportunities.<br>
+      I'm actively looking for quant, finance, and data science opportunities.<br>
       If you're working on something interesting — let's talk.
     </p>
     <div class="contact-links">
